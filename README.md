@@ -35,12 +35,12 @@ Le validazioni e i controlli possiamo farli anche in un secondo momento.
 Scrivo solo i cambiamenti a grandi linee, non tutto il pseudo-codice,
 eventuali modifiche, aggiustamenti e bonus, saranno ragionati e aggiunti direttamente al codice.
 
-1.  Generare l'array `arrayBomb`:
+1.  Generare con una funzione l'array `arrayBomb`:
     - Usare un ciclo `for` e la funzione `Math.random` per riempire l'array con numeri casuali.
     - Utilizzare un controllo `if` con `includes` per assicurarci che i numeri non si ripetano.
 
 2.  Sostituire l'evento `click` del quadrato:
-    - Sostituire `square.addEventListener('click', changeColor)` con una funzione simile a `document.addEventListener` per verificare la presenza di bombe.
+    - Sostituire `square.addEventListener('click', changeColor)` con una funzione simile per verificare la presenza di bombe.
 
 3.  Controllare la presenza di bombe:
     - Se il numero corrispondente al quadrato cliccato è presente in `arrayBomb`, attiva un `toggle` per cambiare la classe e il colore del quadrato, indicando che la partita è persa.

@@ -7,6 +7,7 @@ let squareNumber;
 let squareDimension;
 let arrayBomb;
 let endGame = false;
+let score = 0;
 
 // Aggiungo un listener al click sul pulsante di gioco
 playButton.addEventListener('click', function() {
@@ -26,7 +27,12 @@ function createBomb() {
             array.push(bomb);
         }
     }
-    console.log(array);
+    // temp
+    array.sort(function(a, b) {
+        return a - b;
+    });
+    console.log(array);      
+
     return array;
 }
 
@@ -67,6 +73,10 @@ function selectDifficulty() {
             squareNumber = 49;
             squareDimension = 1200 / 7;
             break;
+        case 4:
+            squareNumber = 25;
+            squareDimension = 1200 / 5;
+            break;
         default:
             alert("Seleziona una difficoltà valida");
             return false; // Ritorno false se la difficoltà non è valida
@@ -75,15 +85,23 @@ function selectDifficulty() {
 }
 
 // Funzione per cambiare il colore del quadrato al click
-function checkBomb() { 
+function checkBomb() {
     if (!endGame) {
         const cellNumber = parseInt(this.innerText);        
         if (arrayBomb.includes(cellNumber)) {
+            this.classList.remove('skyblue');
             this.classList.add('red'); // Aggiungo la classe per cambiare il colore del quadrato
+            alert('GAME OVER');
             endGame = true;
         }
         else {
-            ?
+            this.classList.remove('red');
+            this.classList.add('skyblue');
+            score++;
+            if (score == squareNumber - 16) {
+                alert ('VICTORY')
+                endGame = true;
+            }
         }
     }
 }

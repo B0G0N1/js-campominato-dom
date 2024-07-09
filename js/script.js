@@ -2,7 +2,7 @@
 const playButton = document.getElementById('play-button');
 const grid = document.getElementById('grid');
 
-// Dichiaro le variabili globali (più comodo) per il numero e le dimensioni dei quadrati
+// Dichiaro le variabili globali
 let squareNumber;
 let squareDimension;
 
@@ -10,9 +10,27 @@ let squareDimension;
 playButton.addEventListener('click', function() {
     grid.innerHTML = ''; // Pulisco il contenuto della griglia ogni volta che si inizia una nuova partita
     if (selectDifficulty()) {
-        createSquare(); // Creo i quadrati se la difficoltà è stata selezionata correttamente
+        let arrayBomb = createBomb();
+        createSquare(arrayBomb); // Creo i quadrati se la difficoltà è stata selezionata correttamente
     }
 });
+
+
+function createBomb() {
+    let array = [];
+    while (array.length < 16) {
+        let bomb = generateNumber();
+        if (!array.includes(bomb)) {
+            array.push(bomb);
+        }
+    }
+    return array;
+}
+
+// Funzione creata per pietà solo per utilizzare funzioni
+function generateNumber() {
+    return Math.floor(Math.random() * squareNumber) + 1;
+}
 
 // Funzione per creare i quadrati in base alla difficoltà selezionata
 function createSquare() {
@@ -59,4 +77,10 @@ function changeColor() {
 
     const cellNumber = parseInt(this.innerText);
     console.log(`Hai cliccato sulla cella numero ${cellNumber}`);
+
+    // temp
+    console.log(arrayBomb);
+    if (arrayBomb.includes(this.innerText)) {
+        alert("KABOOOOOOOOOM");
+    }
 }

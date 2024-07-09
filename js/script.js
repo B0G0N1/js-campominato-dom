@@ -6,6 +6,7 @@ const grid = document.getElementById('grid');
 let squareNumber;
 let squareDimension;
 let arrayBomb;
+let endGame = false;
 
 // Aggiungo un listener al click sul pulsante di gioco
 playButton.addEventListener('click', function() {
@@ -25,6 +26,7 @@ function createBomb() {
             array.push(bomb);
         }
     }
+    console.log(array);
     return array;
 }
 
@@ -45,7 +47,7 @@ function createSquare() {
 
         grid.appendChild(square); // Aggiungo il quadrato alla griglia
         
-        square.addEventListener('click', changeColor); // Aggiungo un listener per cambiare il colore al click
+        square.addEventListener('click', checkBomb); // Aggiungo un listener per cambiare il colore al click
     }
 }
 
@@ -73,15 +75,15 @@ function selectDifficulty() {
 }
 
 // Funzione per cambiare il colore del quadrato al click
-function changeColor() {
-    this.classList.toggle('light-blue'); // Alterno la classe per cambiare il colore del quadrato
-
-    const cellNumber = parseInt(this.innerText);
-    console.log(`Hai cliccato sulla cella numero ${cellNumber}`);
-
-    // temp
-    console.log(arrayBomb);
-    if (arrayBomb.includes(cellNumber)) {
-        alert("KABOOOOOOOOOM");
+function checkBomb() { 
+    if (!endGame) {
+        const cellNumber = parseInt(this.innerText);        
+        if (arrayBomb.includes(cellNumber)) {
+            this.classList.add('red'); // Aggiungo la classe per cambiare il colore del quadrato
+            endGame = true;
+        }
+        else {
+            ?
+        }
     }
 }

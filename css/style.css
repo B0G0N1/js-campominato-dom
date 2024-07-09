@@ -1,0 +1,56 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* MAIN CSS */
+header {
+    background-color: #131138;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: flex-end;
+    min-width: 100px;
+}
+
+h2 {
+    font-size: 35px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+
+/* ELEMENTS CSS */
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+    background-color: #131138;
+    border: 1px solid white;
+}
+
+#grid {
+    width: 1200px;
+    height: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#play-button,
+#game-difficulty {
+    padding: 10px 30px;
+    font-size: 20px;
+    background-color: chocolate;
+    color: white;
+    border: none;
+    margin-left: 30px;
+}
+
+.light-blue {
+    background-color: #010081;
+}

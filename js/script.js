@@ -87,7 +87,9 @@ function checkBomb() {
             result.innerText = 'GAME OVER';
             result.classList.add('gameOver');
             endGame = true;
-        } else if (!this.classList.contains('skyblue')) {
+            showBombs();
+        }
+        else if (!this.classList.contains('skyblue')) {
             this.classList.add('skyblue');
             score++;
             points.innerText = `SCORE: ${score}`;
@@ -107,4 +109,14 @@ function reset() {
     result.innerText = '';
     score = 0;
     points.innerText = `SCORE: ${score}`;
+}
+
+function showBombs() {
+    let squares = document.querySelectorAll('.square');
+    for (let i = 0; i < squares.length; i++) {
+        let square = squares[i];
+        if (arrayBomb.includes (parseInt(square.innerText))) {
+            square.classList.add('red');
+        }
+    }
 }

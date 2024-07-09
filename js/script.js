@@ -1,23 +1,22 @@
-// Seleziono gli elementi DOM principali
 const playButton = document.getElementById('play-button');
 const grid = document.getElementById('grid');
+const result = document.getElementById('result');
+const points = document.getElementById('points');
 
-// Dichiaro le variabili globali
 let squareNumber;
 let squareDimension;
 let arrayBomb;
-let endGame = false;
+let endGame;
 let score = 0;
 
-// Aggiungo un listener al click sul pulsante di gioco
 playButton.addEventListener('click', function() {
-    grid.innerHTML = ''; // Pulisco il contenuto della griglia ogni volta che si inizia una nuova partita
+    reset();
     if (selectDifficulty()) {
         arrayBomb = createBomb();
-        createSquare(); // Creo i quadrati se la difficoltà è stata selezionata correttamente
+        console.log(arrayBomb);
+        createSquare();
     }
 });
-
 
 function createBomb() {
     let array = [];
@@ -27,43 +26,34 @@ function createBomb() {
             array.push(bomb);
         }
     }
-    // temp
     array.sort(function(a, b) {
         return a - b;
     });
-    console.log(array);      
-
     return array;
 }
 
-// Funzione creata per pietà solo per utilizzare funzioni
 function generateNumber() {
     return Math.floor(Math.random() * squareNumber) + 1;
 }
 
-// Funzione per creare i quadrati in base alla difficoltà selezionata
 function createSquare() {
     for (let i = 1; i <= squareNumber; i++) {
         const square = document.createElement('div');
         square.classList.add('square');
         square.innerText = i;
-
-        square.style.width = squareDimension + 'px'; // Imposto larghezza del quadrato
-        square.style.height = squareDimension + 'px'; // Imposto altezza del quadrato
-
-        grid.appendChild(square); // Aggiungo il quadrato alla griglia
-        
-        square.addEventListener('click', checkBomb); // Aggiungo un listener per cambiare il colore al click
+        square.style.width = squareDimension + 'px';
+        square.style.height = squareDimension + 'px';
+        grid.appendChild(square);
+        square.addEventListener('click', checkBomb);
     }
 }
 
-// Funzione per selezionare la difficoltà del gioco
 function selectDifficulty() {
     const difficulty = document.getElementById('game-difficulty').value;
     switch (parseInt(difficulty)) {
         case 1:
-            squareNumber = 100; // Numero totale quadrati
-            squareDimension = 1200 / 10; // Dimensione quadrati
+            squareNumber = 100;
+            squareDimension = 1200 / 10;
             break;
         case 2:
             squareNumber = 81;
@@ -79,29 +69,40 @@ function selectDifficulty() {
             break;
         default:
             alert("Seleziona una difficoltà valida");
-            return false; // Ritorno false se la difficoltà non è valida
+            return false;
     }
-    return true; // Ritorno true se la difficoltà è stata selezionata correttamente
+    return true;
 }
 
-// Funzione per cambiare il colore del quadrato al click
 function checkBomb() {
     if (!endGame) {
-        const cellNumber = parseInt(this.innerText);        
+        const cellNumber = parseInt(this.innerText);
         if (arrayBomb.includes(cellNumber)) {
-            this.classList.remove('skyblue');
-            this.classList.add('red'); // Aggiungo la classe per cambiare il colore del quadrato
-            alert('GAME OVER');
+            this.classList.add('red');
+            result.innerText = 'GAME OVER';
+            result.classList.add('gameOver');
             endGame = true;
         }
-        else {
-            this.classList.remove('red');
+        else if (!this.classList.contains('skyblue')) {
             this.classList.add('skyblue');
             score++;
+            points.innerText = `SCORE: ${score}`;
             if (score == squareNumber - 16) {
-                alert ('VICTORY')
+                result.innerText = 'VICTORY';
+                result.classList.add('victory');
                 endGame = true;
             }
         }
     }
+}
+
+function reset() {
+    grid.innerHTML = '';
+    endGame = false;
+    result.innerText = '';
+    points.innerText = `SCORE: 0`;
+}
+
+function showSquare() {
+    
 }

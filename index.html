@@ -8,17 +8,25 @@
 </head>
 <body>
     <header>
-        <select id="game-difficulty">
-            <option value="">Seleziona la Difficoltà</option>
-            <option value="1">Facile</option>
-            <option value="2">Medio</option>
-            <option value="3">Difficile</option>
-            <option value="4">ULTRA HARD</option>
-        </select>
-        <button id="play-button">Gioca</button>
+        <div>
+            <h2 id="result"></h2>
+        </div>
+        <div>
+            <select id="game-difficulty">
+                <option value="">Seleziona la Difficoltà</option>
+                <option value="1">Facile</option>
+                <option value="2">Medio</option>
+                <option value="3">Difficile</option>
+                <option value="4">ULTRA HARD</option>
+            </select>
+            <button id="play-button">Gioca</button>
+        </div>
     </header>
     <main>
-        <h2>Campo Minato</h2>
+        <div class="info">
+            <h2>Campo Minato</h2>
+            <h3 id="points">SCORE: 0</h3>
+        </div>
         <div id="grid"></div>
     </main>
     <script src="./js/script.js"></script>
